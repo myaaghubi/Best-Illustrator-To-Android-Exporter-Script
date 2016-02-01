@@ -2,22 +2,26 @@
 	*** Author: Mohammad Yaghobi (https://github.com/mohammadyaghobi)
 */
 
-var targetIconTypes = [
+var targetImageTypes = [
 	{
-        name: "Launcher icons(standard icons - mdpi=48*48)",
-        baseSize: 48
+        name: "Free size drawable(target mdpi=free)",
+        mdpi: 0
+    },
+	{
+        name: "Launcher icons(standard icons - target mdpi=48*48)",
+        mdpi: 48
     },
     {
-        name: "Action bar, Dialog & Tab icons(mdpi=32*32)",
-        baseSize: 32
+        name: "Action bar, Dialog & Tab icons(target mdpi=32*32)",
+        mdpi: 32
     },
     {
-        name: "Small Contextual Icons(mdpi=16*16)",
-        baseSize: 16
+        name: "Small Contextual Icons(target mdpi=16*16)",
+        mdpi: 16
     },
     {
-        name: "Notification icons(mdpi=24*24)",
-        baseSize: 24
+        name: "Notification icons(target mdpi=24*24)",
+        mdpi: 24
     }
 ];
 
@@ -64,7 +68,7 @@ var width = document.width;
 var height = document.height;
 var targetFolder;
 
-var selectedIconTypes = {};
+var selectedImageTypes = {};
 var selectedSuffixs = {};
 var selectedAddress = {};
 
@@ -73,7 +77,7 @@ if(document) {
     var primeWin = new Window("dialog","Export options");
     var veiwGroup = primeWin.add("group");
 
-    var targetIconTypesBox = createOneItemSelectionPanel0(targetIconTypes, veiwGroup);
+    var targetImageTypesBox = createOneItemSelectionPanel0(targetImageTypes, veiwGroup);
     var targetSuffixsBox = createMultiSelectionPanel1(targetSuffixs, veiwGroup);
     var targetAddressBox = createOneItemSelectionPanel2(targetAddress, veiwGroup);
 
@@ -85,9 +89,9 @@ if(document) {
 		targetFolder = Folder.selectDialog("Select target folder to export");
 		if (targetFolder) {
 			var iconType;
-			for (var key in selectedIconTypes) {
-				if (selectedIconTypes.hasOwnProperty(key)) {
-					iconType = selectedIconTypes[key];
+			for (var key in selectedImageTypes) {
+				if (selectedImageTypes.hasOwnProperty(key)) {
+					iconType = selectedImageTypes[key];
 				}
 			}
 			var targetaddress;
@@ -100,7 +104,7 @@ if(document) {
 				if (selectedSuffixs.hasOwnProperty(key)) {
 					var item = selectedSuffixs[key];
 					
-					exportToFile(item.multiplayer, iconType.baseSize, item.name, targetaddress.address);
+					exportToFile(item.multiplayer, iconType.mdpi, item.name, targetaddress.address);
 				}
 			}
 			this.parent.parent.close();
@@ -115,7 +119,7 @@ if(document) {
     primeWin.show();
 }
 
-function exportToFile(multiplayer, baseSize, suffix, resAddress) {
+function exportToFile(multiplayer, mdpi, suffix, resAddress) {
     var target = new Folder(targetFolder.fsName + "/" + resAddress + suffix);
 
 	if (!target.exists) {
@@ -126,10 +130,18 @@ function exportToFile(multiplayer, baseSize, suffix, resAddress) {
 		document.artboards.setActiveArtboardIndex(i);
 			
 		var file = new File(target.fsName + "/" + document.layers[i].name + ".png");
+		
+		var imageBaseRateWidth = 1;
+		var imageBaseRateHeight = 1;
 
+		if (mdpi!=0){
+			imageBaseRateWidth = mdpi/width;
+			imageBaseRateHeight = mdpi/height;
+		}
+		
 		var extras = new ExportOptionsPNG24();
-		extras.horizontalScale = multiplayer*baseSize/height*100;
-		extras.verticalScale = multiplayer*baseSize/width*100;
+		extras.horizontalScale = multiplayer*imageBaseRateWidth*100;
+		extras.verticalScale = multiplayer*imageBaseRateHeight*100;
 		extras.artBoardClipping = true;
 		extras.transparency = true;
 		extras.antiAliasing = true;
@@ -139,7 +151,7 @@ function exportToFile(multiplayer, baseSize, suffix, resAddress) {
 };
 
 function createOneItemSelectionPanel0(array, parent) {
-    var panel = parent.add("panel", undefined, "Icon type");
+    var panel = parent.add("panel", undefined, "Image type");
 	panel.alignment = "top";
     panel.alignChildren = "left";
     for(var i = 0; i < array.length;  i++) {
@@ -147,13 +159,13 @@ function createOneItemSelectionPanel0(array, parent) {
         cb.item = array[i];
 		if (i==0) {
 			cb.value = true;
-			selectedIconTypes[cb.item.name] = cb.item;
+			selectedImageTypes[cb.item.name] = cb.item;
 		}
         cb.onClick = function() {
             if(this.value) {
-                selectedIconTypes[this.item.name] = this.item;
+                selectedImageTypes[this.item.name] = this.item;
             } else {
-                delete selectedIconTypes[this.item.name];
+                delete selectedImageTypes[this.item.name];
             }
         };
     }
@@ -178,13 +190,13 @@ function createMultiSelectionPanel1(array, parent) {
     }
 };
 function createOneItemSelectionPanel2(array, parent) {
-    var panel = parent.add("panel", undefined, "Target Type");
+    var panel = parent.add("panel", undefined, "Target type");
 	panel.alignment = "top";
     panel.alignChildren = "left";
     for(var i = 0; i < array.length;  i++) {
         var cb = panel.add("radiobutton", undefined, "\u00A0" + array[i].name);
         cb.item = array[i];
-		if (i==0) {
+		if (i==1) {
 			cb.value = true;
 			selectedAddress[cb.item.name] = cb.item;
 		}
