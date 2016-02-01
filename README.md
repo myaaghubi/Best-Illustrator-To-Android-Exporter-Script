@@ -1,7 +1,8 @@
 Illustrator To Android Exporter Script 1.1
 =================================
 
-A script for exporting assets from illustrator to android mipmap/drawable resources.
+A script for exporting assets from illustrator to android mipmap/drawable resources.<br>
+![Alt text](/screenshot/shot1.png?raw=true "ScreenShot")
 
 Usage
 ---
@@ -34,8 +35,8 @@ Icon sizes
 Target type
 ```
 	Target type
-	├─── Mipmap
-	└─── Drawable
+	├─── Mipmap		/mipmap-mdpi ...
+	└─── Drawable	/drawable-mdpi ...
 ```
 
 
