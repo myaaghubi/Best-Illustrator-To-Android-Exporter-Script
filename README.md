@@ -1,4 +1,4 @@
-Illustrator To Android Exporter Script
+Illustrator To Android Exporter Script 1.1
 =================================
 
 A script for exporting assets from illustrator to android mipmap/drawable resources.
@@ -13,21 +13,22 @@ Options
 Image type
 ```
 	Image type
-	├─── Launcher icons(standard icons - mdpi=48*48)
-	├─── Action bar, Dialog & Tab icons(mdpi=32*32)
-	├─── Small Contextual Icons(mdpi=16*16)
-	└─── Notification icons(mdpi=24*24)
+	├─── Free size drawable(target mdpi=free)
+	├─── Launcher icons(standard icons - target mdpi=48*48)
+	├─── Action bar, Dialog & Tab icons(target mdpi=32*32)
+	├─── Small Contextual Icons(target mdpi=16*16)
+	└─── Notification icons(target mdpi=24*24)
 ```
 
 Icon sizes
 ```
 	Icon sizes
-	├─── ldpi
-	├─── mdpi
-	├─── hdpi
-	├─── xhdpi
-	├─── xxhdpi
-	└─── xxxhdpi
+	├─── ldpi		0.75x
+	├─── mdpi		1x
+	├─── hdpi		1.5x
+	├─── xhdpi		2x
+	├─── xxhdpi		3x
+	└─── xxxhdpi	4x
 ```
 
 Target type
