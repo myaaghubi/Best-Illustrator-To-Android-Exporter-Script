@@ -4,23 +4,23 @@
 
 var targetImageTypes = [
 	{
-        name: "Free size drawable(target mdpi=free)",
-        mdpi: 0
+        name: "Free size drawable(target mdpi width=free)",
+        mdpi: 1
     },
 	{
-        name: "Launcher icons(standard icons - target mdpi=48*48)",
+        name: "Launcher icons(standard icons - target mdpi width=48px)",
         mdpi: 48
     },
     {
-        name: "Action bar, Dialog & Tab icons(target mdpi=32*32)",
+        name: "Action bar, Dialog & Tab icons(target mdpi width=32px)",
         mdpi: 32
     },
     {
-        name: "Small Contextual Icons(target mdpi=16*16)",
+        name: "Small Contextual Icons(target mdpi width=16px)",
         mdpi: 16
     },
     {
-        name: "Notification icons(target mdpi=24*24)",
+        name: "Notification icons(target mdpi width=24px)",
         mdpi: 24
     }
 ];
@@ -65,7 +65,6 @@ var targetAddress = [
 
 var document = app.activeDocument;
 var width = document.width;
-var height = document.height;
 var targetFolder;
 
 var selectedImageTypes = {};
@@ -132,16 +131,19 @@ function exportToFile(multiplayer, mdpi, suffix, resAddress) {
 		var file = new File(target.fsName + "/" + document.layers[i].name + ".png");
 		
 		var imageBaseRateWidth = 1;
-		var imageBaseRateHeight = 1;
 
-		if (mdpi!=0){
+		if (mdpi>1){
 			imageBaseRateWidth = mdpi/width;
-			imageBaseRateHeight = mdpi/height;
 		}
 		
 		var extras = new ExportOptionsPNG24();
-		extras.horizontalScale = multiplayer*imageBaseRateWidth*100;
-		extras.verticalScale = multiplayer*imageBaseRateHeight*100;
+		if (mdpi>1) {
+			extras.horizontalScale = multiplayer*imageBaseRateWidth*100;
+			extras.verticalScale = multiplayer*imageBaseRateWidth*100;
+		} else {
+			extras.horizontalScale = multiplayer*width;
+			extras.verticalScale = multiplayer*width;
+		}
 		extras.artBoardClipping = true;
 		extras.transparency = true;
 		extras.antiAliasing = true;
