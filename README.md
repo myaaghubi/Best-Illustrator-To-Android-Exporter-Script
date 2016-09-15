@@ -1,7 +1,7 @@
-Illustrator To Android Exporter Script 1.2
+Best Illustrator To Android Exporter Script 1.2
 =================================
 
-A script for exporting assets from illustrator to android mipmap/drawable resources.<br>
+Best script for exporting assets from illustrator to android mipmap/drawable resources.<br>
 ![Alt text](/screenshot/shot1.png?raw=true "ScreenShot")
 
 Usage

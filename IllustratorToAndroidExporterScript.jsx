@@ -69,7 +69,7 @@ var targetFolder;
 
 var selectedImageTypes = {};
 var selectedSuffixs = {};
-var selectedAddress = {};
+var selectedAddress = "";
 
 
 if(document) {
@@ -93,17 +93,11 @@ if(document) {
 					iconType = selectedImageTypes[key];
 				}
 			}
-			var targetaddress;
-			for (var key in selectedAddress) {
-				if (selectedAddress.hasOwnProperty(key)) {
-					targetaddress = selectedAddress[key];
-				}
-			}
 			for (var key in selectedSuffixs) {
 				if (selectedSuffixs.hasOwnProperty(key)) {
 					var item = selectedSuffixs[key];
 					
-					exportToFile(item.multiplayer, iconType.mdpi, item.name, targetaddress.address);
+					exportToFile(item.multiplayer, iconType.mdpi, item.name, selectedAddress);
 				}
 			}
 			this.parent.parent.close();
@@ -178,7 +172,7 @@ function createMultiSelectionPanel1(array, parent) {
     for(var i = 0; i < array.length;  i++) {
         var cb = panel.add("checkbox", undefined, "\u00A0" + array[i].name);
         cb.item = array[i];
-		if (i>0 && i<5) {
+		if (i>0 && i<6) {
 			cb.value = true;
 			selectedSuffixs[cb.item.name] = cb.item;
 		}
@@ -197,17 +191,19 @@ function createOneItemSelectionPanel2(array, parent) {
     panel.alignChildren = "left";
     for(var i = 0; i < array.length;  i++) {
         var cb = panel.add("radiobutton", undefined, "\u00A0" + array[i].name);
-        cb.item = array[i];
 		if (i==1) {
+			cb.itemId = 1;
 			cb.value = true;
-			selectedAddress[cb.item.name] = cb.item;
-		}
-        cb.onClick = function() {
-            if(this.value) {
-                selectedAddress[this.item.name] = this.item;
-            } else {
-                delete selectedAddress[this.item.name];
-            }
-        };
+			selectedAddress = array[1].address; 
+			cb.onClick = function() {
+				selectedAddress = targetAddress[1].address;
+			};
+		} else {
+			cb.itemId = 0;
+			selectedAddress = array[0].address;      
+			cb.onClick = function() {
+				selectedAddress = targetAddress[0].address;
+			};
+		}     
     }
 };
