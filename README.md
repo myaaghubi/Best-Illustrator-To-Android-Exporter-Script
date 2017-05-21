@@ -44,7 +44,7 @@ Target type
 
 Photoshop Version
 ---
-	[Photoshop To Android Exporter Script](https://github.com/myaghobi/Best-Photoshop-To-Android-Exporter-Script/ "Photoshop To Android Exporter Script")
+[Photoshop To Android Exporter Script](https://github.com/myaghobi/Best-Photoshop-To-Android-Exporter-Script/ "Photoshop To Android Exporter Script")
 
 License
 ---
