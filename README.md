@@ -37,14 +37,14 @@ Icon sizes
 Target type
 ```
 	Target type
-	├─── Mipmap		/mipmap-mdpi ...
+	├─── Mipmap	/mipmap-mdpi ...
 	└─── Drawable	/drawable-mdpi ...
 ```
 
 
 Photoshop Version
 ---
-[Photoshop To Android Exporter Script](https://github.com/myaghobi/Best-Photoshop-To-Android-Exporter-Script/ "Photoshop To Android Exporter Script")
+[Best Photoshop To Android Exporter Script](https://github.com/myaghobi/Best-Photoshop-To-Android-Exporter-Script/ "Best Photoshop To Android Exporter Script")
 
 License
 ---
