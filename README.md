@@ -13,38 +13,38 @@ Options
 ---
 Image type
 ```
-	Target type
-	├─── Launcher icons(standard icons - target mdpi width=48px)
-	├─── Action bar, Dialog & Tab icons(target mdpi width=32px)
-	├─── Small Contextual Icons(target mdpi width=16px)
-	├─── Notification icons(target mdpi width=24px)
-	|
-	├─── Custom size(target mdpi width=entered custom number)
-	└─── Free size drawable(target mdpi width=free)
+    Target type
+    ├─── Launcher icons(standard icons - target mdpi width=48px)
+    ├─── Action bar, Dialog & Tab icons(target mdpi width=32px)
+    ├─── Small Contextual Icons(target mdpi width=16px)
+    ├─── Notification icons(target mdpi width=24px)
+    |
+    ├─── Custom size(target mdpi width=entered custom number)
+    └─── Free size drawable(target mdpi width=free)
 ```
 
 Icon sizes
 ```
-	Icon Density
-	├─── ldpi   0.75x
-	├─── mdpi      1x
-	├─── hdpi    1.5x
-	├─── xhdpi     2x
-	├─── xxhdpi    3x
-	└─── xxxhdpi   4x
+    Icon Density
+    ├─── ldpi   0.75x
+    ├─── mdpi      1x
+    ├─── hdpi    1.5x
+    ├─── xhdpi     2x
+    ├─── xxhdpi    3x
+    └─── xxxhdpi   4x
 ```
 
 Target type
 ```
-	Target type
-	├─── Mipmap	/mipmap-mdpi ...
-	└─── Drawable	/drawable-mdpi ...
+    Target type
+    ├─── Mipmap		/mipmap-mdpi ...
+    └─── Drawable	/drawable-mdpi ...
 ```
 
 
 Photoshop Version
 ---
-[Best Photoshop To Android Exporter Script](https://github.com/myaghobi/Best-Photoshop-To-Android-Exporter-Script/ "Best Photoshop To Android Exporter Script")
+[Best Photoshop To Android Exporter Script](http://myaghobi.github.io/Best-Photoshop-To-Android-Exporter-Script/ "ScreenShot Best Photoshop To Android Exporter Script")
 
 License
 ---
