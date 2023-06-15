@@ -67,6 +67,7 @@ var targetAddress = [
 	}
 ];
 
+
 var document = app.activeDocument;
 var width = document.width;
 var targetFolder;
@@ -109,12 +110,16 @@ if(document) {
 		if (!targetFolder)
 			alert("Selected target folder is not valid!")
 
-		if (validIntFlag && targetFolder) {
+		var docName = prompt("Enter document name :")
+		if (docName == null)
+			alert("Please enter a file name.")
+
+		if (validIntFlag && targetFolder && docName != null) {
 			for (var key in selectedSuffixs) {
 				if (selectedSuffixs.hasOwnProperty(key)) {
 					var item = selectedSuffixs[key];
-					
-					exportToFile(item.multiplayer, iconType.mdpi, item.name, selectedAddress);
+
+					exportToFile(item.multiplayer, iconType.mdpi, item.name, selectedAddress, docName);
 				}
 			}
 			this.parent.parent.close();
@@ -128,7 +133,7 @@ if(document) {
 	primeWin.show();
 }
 
-function exportToFile(multiplayer, mdpi, suffix, resAddress) {
+function exportToFile(multiplayer, mdpi, suffix, resAddress, docName) {
 	var target = new Folder(targetFolder.fsName + "/" + resAddress + suffix);
 
 	if (!target.exists) {
@@ -137,8 +142,8 @@ function exportToFile(multiplayer, mdpi, suffix, resAddress) {
 
 	for (var i = document.artboards.length - 1; i >= 0; i--) {
 		document.artboards.setActiveArtboardIndex(i);
-		
-		var file = new File(target.fsName + "/" + document.layers[i].name + ".png");
+
+		var file = new File(target.fsName + "/" + docName + ".png");
 
 		var imageBaseRateWidth = 1;
 
@@ -241,17 +246,17 @@ function createOneItemSelectionPanel2(array, parent) {
 		if (i==1) {
 			cb.itemId = 1;
 			cb.value = true;
-			selectedAddress = array[1].address; 
+			selectedAddress = array[1].address;
 			cb.onClick = function() {
 				selectedAddress = targetAddress[1].address;
 			};
 		} else {
 			cb.itemId = 0;
-			selectedAddress = array[0].address;      
+			selectedAddress = array[0].address;
 			cb.onClick = function() {
 				selectedAddress = targetAddress[0].address;
 			};
-		}     
+		}
 	}
 
 	panel = group.add("panel", undefined, "Custom Size");
